@@ -8,7 +8,7 @@ Name:       xtail
 # >> macros
 # << macros
 
-Summary:    a multi-file tail
+Summary:    a multi-file tail(1)
 Version:    2.1
 Release:    0
 Group:      Applications/System
@@ -23,9 +23,9 @@ BuildRequires:  autoconf
 BuildRequires:  automake
 
 %description
-xtail watches the growth of files. 
+xtail watches the growth of files.
 
-It's like running a "tail -f"on a bunch of files at once. 
+It's like running a "tail -f" on a bunch of files at once.
 
 You can specify both filenames and directories on the command line.
 
@@ -33,11 +33,35 @@ If you specify a directory, it watches all the files in that directory.  It
 will notice when new files are created (and start watching them) or when old
 files are deleted (and stop watching them).
 
+=== HISTORICAL NOTES ===
+
+This program is an oldie but goodie.  It was posted to comp.sources.misc
+in July 1989 (see ftp.uu.net:/usenet/comp.sources.misc/volume7/xtail.Z).
+I remember posting an even earlier version to alt.sources.  It has been
+published in the O'Reilly & Associates "Unix Power Tools" collection
+(book and CD-ROM).
+
+Over the years, some fly-by-night organizations (such as the MIT X
+Consortium and SGI) have tried to steal the "xtail" name.  Don't be
+fooled!  Insist on the original.
+
+The 1989 release credited David Dykstra for his contributions.
+
+Chip Rosenthal
+<chip@unicom.com>
+
 %if "%{?vendor}" == "chum"
+PackageName: xtail
 Type: console-application
+DeveloperName: Chip Rosenthal
 PackagerName: nephros
 Categories:
+  - System
   - Utility
+Custom:
+  PackagingRepo: https://github.com/sailfishos-chum/detox
+Url:
+  Homepage: https://unicom.crosenthal.com/sw/xtail
 %endif
 
 

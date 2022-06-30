@@ -1,0 +1,72 @@
+Name: xtail
+Summary: a multi-file tail(1)
+Version: 2.1
+Release: 0
+Group: Applications/System
+# actually not sure - Gentoo lists it as BSD, Debian has it packaged so I
+# conclude it's FOSS enough
+License: BSD
+Sources:
+  - '%{name}-%{version}.tar.gz'
+URL: https://unicom.crosenthal.com/sw/xtail
+Description: |
+    xtail watches the growth of files.
+
+    It's like running a "tail -f" on a bunch of files at once.
+
+    You can specify both filenames and directories on the command line.
+
+    If you specify a directory, it watches all the files in that directory.  It
+    will notice when new files are created (and start watching them) or when old
+    files are deleted (and stop watching them).
+
+    === HISTORICAL NOTES ===
+
+    This program is an oldie but goodie.  It was posted to comp.sources.misc
+    in July 1989 (see ftp.uu.net:/usenet/comp.sources.misc/volume7/xtail.Z).
+    I remember posting an even earlier version to alt.sources.  It has been
+    published in the O'Reilly & Associates "Unix Power Tools" collection
+    (book and CD-ROM).
+
+    Over the years, some fly-by-night organizations (such as the MIT X
+    Consortium and SGI) have tried to steal the "xtail" name.  Don't be
+    fooled!  Insist on the original.
+
+    The 1989 release credited David Dykstra for his contributions.
+
+    Chip Rosenthal
+    <chip@unicom.com>
+
+    %if "%{?vendor}" == "chum"
+    PackageName: xtail
+    Type: console-application
+    DeveloperName: Chip Rosenthal
+    PackagerName: nephros
+    Categories:
+      - System
+      - Utility
+    Custom:
+      PackagingRepo: https://github.com/sailfishos-chum/detox
+    Url:
+      Homepage: https://unicom.crosenthal.com/sw/xtail
+    %endif
+
+Patches:
+  - 0001-Use-ISO8601-Fix-Gcc-header-Use-C-c.patch
+  - 0001-xtail.1-remove-SIGQUIT.patch
+  - xtail_2.1-5-debian-local-changes.patch
+SetupOptions: '-q -n %{name}-%{version}'
+Builder: none
+PkgBR:
+    - autoconf
+    - automake
+Files:
+  - '%{_bindir}/%{name}'
+SubPackages:
+  - Name: docs
+    BuildArch: noarch
+    NoAutoReq: true
+    Summary:   Documentation files for %{name}
+    Group: Documentation
+    Files:
+      - '%{_mandir}/*'
